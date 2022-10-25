@@ -1,0 +1,36 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Volvo.TaxCalculator.Domain", "src\Volvo.TaxCalculator.Domain\Volvo.TaxCalculator.Domain.csproj", "{31583098-10D2-4BCB-9906-0F907E18893E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Volvo.TaxCalculator.Domain.Tests", "src\Volvo.TaxCalculator.Domain.Tests\Volvo.TaxCalculator.Domain.Tests.csproj", "{27BB1735-B651-44EF-94B5-C6D677FC1B1A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Volvo.TaxCalculator.Utils", "src\Volvo.TaxCalculator.Utils\Volvo.TaxCalculator.Utils.csproj", "{833344C1-188D-48B5-99C4-99EB5C6E1876}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Volvo.TaxCalculator.WebApi", "src\Volvo.TaxCalculator.WebApi\Volvo.TaxCalculator.WebApi.csproj", "{82A9E5D3-2955-408C-B43E-CBD0CF93B48A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+
+		{31583098-10D2-4BCB-9906-0F907E18893E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{31583098-10D2-4BCB-9906-0F907E18893E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{31583098-10D2-4BCB-9906-0F907E18893E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{31583098-10D2-4BCB-9906-0F907E18893E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{27BB1735-B651-44EF-94B5-C6D677FC1B1A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{27BB1735-B651-44EF-94B5-C6D677FC1B1A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{27BB1735-B651-44EF-94B5-C6D677FC1B1A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{27BB1735-B651-44EF-94B5-C6D677FC1B1A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{833344C1-188D-48B5-99C4-99EB5C6E1876}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{833344C1-188D-48B5-99C4-99EB5C6E1876}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{833344C1-188D-48B5-99C4-99EB5C6E1876}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{833344C1-188D-48B5-99C4-99EB5C6E1876}.Release|Any CPU.Build.0 = Release|Any CPU
+		{82A9E5D3-2955-408C-B43E-CBD0CF93B48A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{82A9E5D3-2955-408C-B43E-CBD0CF93B48A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{82A9E5D3-2955-408C-B43E-CBD0CF93B48A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{82A9E5D3-2955-408C-B43E-CBD0CF93B48A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
