@@ -1,3 +1,4 @@
+using System.Reflection;
 using System.Text.Json.Serialization;
 using FluentValidation;
 using Microsoft.AspNetCore.Http.Json;
@@ -10,6 +11,7 @@ var builder = WebApplication.CreateBuilder(args);
 RegisterServices(builder.Services);
 
 var app = builder.Build();
+
 app.UseMiddleware<ErrorHandlingMiddleware>();
 app.UseSwagger();
 app.UseSwaggerUI(x =>
@@ -27,14 +29,18 @@ void RegisterServices(IServiceCollection services)
     services.AddMvcCore()
         .AddJsonOptions(options => options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter()));
     
-    services.Configure<JsonOptions>(options => options.SerializerOptions.Converters.Add(new JsonStringEnumConverter()));
-    
+    services.Configure<JsonOptions>(options =>
+    {
+        options.SerializerOptions.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull;
+        options.SerializerOptions.Converters.Add(new JsonStringEnumConverter());
+    });
+
     services.AddEndpointsApiExplorer();
-    // services.AddValidatorsFromAssemblyContaining<Program>();
-    
+    services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
+
     services.AddTransient<ITaxCalculatorService, TaxCalculatorService>();
     services.AddTransient<ICongestionTaxCalculator, CongestionTaxCalculator>();
-    
+
     services.AddSwaggerGen(options =>
-        options.SwaggerDoc("v1", new OpenApiInfo {Title = "Volvo Tax Calculator", Version = "v1"}));
+        options.SwaggerDoc("v1", new OpenApiInfo { Title = "Volvo Tax Calculator", Version = "v1" }));
 }

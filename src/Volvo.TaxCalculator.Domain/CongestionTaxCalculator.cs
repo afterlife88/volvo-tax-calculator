@@ -16,7 +16,7 @@ public sealed class CongestionTaxCalculator : ICongestionTaxCalculator
     {
         _cityFeeRules.TryGetValue(city.ToUpper(), out var rulesTaskOpt);
         var rulesTask = rulesTaskOpt ??
-                        throw new InvalidOperationException(
+                        throw new CongestionBusinessException(
                             $"Rules for city {city} is not supported.");
         var cityTaxRules = await rulesTask;
 

@@ -50,9 +50,12 @@ public class CongestionTaxCalculatorTests
     }
 
     [Theory]
-    [InlineData(typeof(Tractor))]
     [InlineData(typeof(Motorcycle))]
+    [InlineData(typeof(Tractor))]
+    [InlineData(typeof(Emergency))]
+    [InlineData(typeof(Diplomat))]
     [InlineData(typeof(Foreign))]
+    [InlineData(typeof(Military))]
     public async Task GetTaxReturnsZeroForExemptVehicles(Type vehicle)
     {
 
@@ -66,7 +69,7 @@ public class CongestionTaxCalculatorTests
     {
         var taxCalculator = new CongestionTaxCalculator();
         await
-            Assert.ThrowsAsync<InvalidOperationException>(()
+            Assert.ThrowsAsync<CongestionBusinessException>(()
                 => taxCalculator.GetTax("TestCity", new Car(), new List<DateTime>() {DateTime.Now}));
     }
 }

@@ -2,8 +2,5 @@
 
 public sealed record Motorcycle : IVehicle
 {
-    public string GetVehicleType()
-    {
-        return "Motorcycle";
-    }
+    public string GetVehicleType() => nameof(Motorcycle);
 }

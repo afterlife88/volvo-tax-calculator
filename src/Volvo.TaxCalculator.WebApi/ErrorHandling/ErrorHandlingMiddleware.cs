@@ -1,4 +1,5 @@
 ﻿using FluentValidation;
+using Volvo.TaxCalculator.Utils;
 
 namespace Volvo.TaxCalculator.WebApi.ErrorHandling;
 
@@ -19,15 +20,19 @@ public sealed class ErrorHandlingMiddleware
         {
             await _next.Invoke(context);
         }
+        catch (HttpStatusException e)
+        {
+            await HandleExceptionAsync(context, e, (int)e.Status, e.Message);
+        }
         catch (ValidationException e)
         {
-            await HandleExceptionAsync(context, e, 422, e.Errors.Select(e => e.ErrorMessage).ToArray());
+            await HandleExceptionAsync(context, e, 400, e.Errors.Select(e => e.ErrorMessage).ToArray());
+        }
+        catch (BadHttpRequestException e)
+        {
+            await HandleExceptionAsync(context, e, 400, "Invalid vehicle passed");
         }
         catch (ArgumentOutOfRangeException e)
-        {
-            await HandleExceptionAsync(context, e, 422, e.Message);
-        }
-        catch (InvalidOperationException e)
         {
             await HandleExceptionAsync(context, e, 422, e.Message);
         }
