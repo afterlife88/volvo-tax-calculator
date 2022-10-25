@@ -55,7 +55,7 @@ public sealed class ErrorHandlingMiddleware
     
     private Task HandleExceptionAsync(HttpContext context, Exception e, int code, params string[] errors)
     {
-        _logger.LogError(e, "Unhandled exception");
+        _logger.LogError(e, "Error occured");
 
         if (!context.Response.HasStarted)
         {
