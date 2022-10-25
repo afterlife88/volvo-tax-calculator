@@ -31,7 +31,6 @@ void RegisterServices(IServiceCollection services)
     
     services.Configure<JsonOptions>(options =>
     {
-        options.SerializerOptions.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull;
         options.SerializerOptions.Converters.Add(new JsonStringEnumConverter());
     });
 
