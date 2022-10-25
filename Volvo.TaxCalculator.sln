@@ -3,11 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Volvo.TaxCalculator.Domain", "src\Volvo.TaxCalculator.Domain\Volvo.TaxCalculator.Domain.csproj", "{31583098-10D2-4BCB-9906-0F907E18893E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Volvo.TaxCalculator.Domain.Tests", "src\Volvo.TaxCalculator.Domain.Tests\Volvo.TaxCalculator.Domain.Tests.csproj", "{27BB1735-B651-44EF-94B5-C6D677FC1B1A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Volvo.TaxCalculator.Domain.Tests", "tests\Volvo.TaxCalculator.Domain.Tests\Volvo.TaxCalculator.Domain.Tests.csproj", "{27BB1735-B651-44EF-94B5-C6D677FC1B1A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Volvo.TaxCalculator.Utils", "src\Volvo.TaxCalculator.Utils\Volvo.TaxCalculator.Utils.csproj", "{833344C1-188D-48B5-99C4-99EB5C6E1876}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Volvo.TaxCalculator.WebApi", "src\Volvo.TaxCalculator.WebApi\Volvo.TaxCalculator.WebApi.csproj", "{82A9E5D3-2955-408C-B43E-CBD0CF93B48A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{C13F3B82-01E9-4B87-B2DC-B023040B6F06}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Volvo.TaxCalculator.WebApi.IntegrationTests", "tests\Volvo.TaxCalculator.WebApi.IntegrationTests\Volvo.TaxCalculator.WebApi.IntegrationTests.csproj", "{29E0EE7E-B6D7-4655-BE3E-FD68F3FF4890}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -32,5 +36,13 @@ Global
 		{82A9E5D3-2955-408C-B43E-CBD0CF93B48A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{82A9E5D3-2955-408C-B43E-CBD0CF93B48A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{82A9E5D3-2955-408C-B43E-CBD0CF93B48A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{29E0EE7E-B6D7-4655-BE3E-FD68F3FF4890}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{29E0EE7E-B6D7-4655-BE3E-FD68F3FF4890}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{29E0EE7E-B6D7-4655-BE3E-FD68F3FF4890}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{29E0EE7E-B6D7-4655-BE3E-FD68F3FF4890}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{27BB1735-B651-44EF-94B5-C6D677FC1B1A} = {C13F3B82-01E9-4B87-B2DC-B023040B6F06}
+		{29E0EE7E-B6D7-4655-BE3E-FD68F3FF4890} = {C13F3B82-01E9-4B87-B2DC-B023040B6F06}
 	EndGlobalSection
 EndGlobal

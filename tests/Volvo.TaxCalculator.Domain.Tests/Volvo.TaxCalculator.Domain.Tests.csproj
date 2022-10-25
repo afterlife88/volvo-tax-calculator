@@ -3,7 +3,6 @@
     <PropertyGroup>
         <TargetFramework>net6.0</TargetFramework>
         <Nullable>enable</Nullable>
-
         <IsPackable>false</IsPackable>
     </PropertyGroup>
 
@@ -21,7 +20,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\Volvo.TaxCalculator.Domain\Volvo.TaxCalculator.Domain.csproj" />
+      <ProjectReference Include="..\..\src\Volvo.TaxCalculator.Domain\Volvo.TaxCalculator.Domain.csproj" />
     </ItemGroup>
 
 </Project>
