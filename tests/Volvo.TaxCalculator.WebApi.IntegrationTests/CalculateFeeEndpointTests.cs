@@ -15,9 +15,10 @@ public sealed class CalculateFeeEndpointTests
     {
         var webAppFactory = new WebApplicationFactory<Program>();
         var httpClient = webAppFactory.CreateClient();
-        var result = await httpClient.PostAsJsonAsync(EndpointPath,
-            new CalculateTaxRequest
-            (ValidCity,
+        var result = await httpClient.PostAsJsonAsync(
+            EndpointPath,
+            new CalculateTaxRequest(
+                ValidCity,
                 VehicleType.Car,
                 new DateTime[]
                 {
@@ -38,9 +39,10 @@ public sealed class CalculateFeeEndpointTests
     {
         var webAppFactory = new WebApplicationFactory<Program>();
         var httpClient = webAppFactory.CreateClient();
-        var result = await httpClient.PostAsJsonAsync(EndpointPath,
-            new CalculateTaxRequest
-            (cityName,
+        var result = await httpClient.PostAsJsonAsync(
+            EndpointPath,
+            new CalculateTaxRequest(
+                cityName,
                 VehicleType.Car,
                 new[] { DateTime.Now }));
 

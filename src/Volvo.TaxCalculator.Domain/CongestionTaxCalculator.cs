@@ -5,13 +5,17 @@ using Volvo.TaxCalculator.Utils;
 
 namespace Volvo.TaxCalculator.Domain;
 
-public interface ICongestionTaxCalculator
-{
-    Task<int> GetTax(string city, IVehicle vehicle, IEnumerable<DateTime> dates);
-}
-
 public sealed class CongestionTaxCalculator : ICongestionTaxCalculator
 {
+    private readonly IReadOnlyDictionary<string, Task<TaxRules>> _cityFeeRules =
+        new Dictionary<string, Task<TaxRules>>
+        {
+            ["GOTHENBURG"] = GetTaxRulesForCity("gothenburg-rules.json"),
+
+            // Extend for more cities by adding another json rule file in CitiesFeeRules folder
+            // ["Copenhagen"] = GetTolCityFee("copenhagen-rules.json"),
+        };
+
     public async Task<int> GetTax(string city, IVehicle vehicle, IEnumerable<DateTime> dates)
     {
         _cityFeeRules.TryGetValue(city.ToUpper(), out var rulesTaskOpt);
@@ -32,8 +36,10 @@ public sealed class CongestionTaxCalculator : ICongestionTaxCalculator
 
             if (minutesFromInitialPass <= 60)
             {
-                if (totalFee > 0) totalFee -= initialFee;
-                if (currentPassFee >= initialFee) initialFee = currentPassFee;
+                if (totalFee > 0)
+                    totalFee -= initialFee;
+                if (currentPassFee >= initialFee)
+                    initialFee = currentPassFee;
                 totalFee += initialFee;
             }
             else
@@ -43,26 +49,9 @@ public sealed class CongestionTaxCalculator : ICongestionTaxCalculator
             }
         }
 
-        if (totalFee > 60) totalFee = 60;
+        if (totalFee > 60)
+            totalFee = 60;
         return totalFee;
-    }
-
-    private readonly IReadOnlyDictionary<string, Task<TaxRules>> _cityFeeRules =
-        new Dictionary<string, Task<TaxRules>>
-        {
-            ["GOTHENBURG"] = GetTaxRulesForCity("gothenburg-rules.json"),
-            // Extend for more cities by adding another json rule file in CitiesFeeRules folder 
-            // ["Copenhagen"] = GetTolCityFee("copenhagen-rules.json"),
-        };
-
-    private int GetTollFee(DateTime date, IVehicle vehicle, TaxRules cityTaxRules)
-    {
-        if (IsTollFreeDate(date) || IsTollFreeVehicle(vehicle)) return 0;
-        var timeOnlyPass = TimeOnly.FromDateTime(date);
-
-        return cityTaxRules.HourRules
-            .Where(x => timeOnlyPass >= x.From && timeOnlyPass <= x.To)
-            .Select(x => x.Tax).FirstOrDefault();
     }
 
     private static async Task<TaxRules> GetTaxRulesForCity(string cityRuleFile)
@@ -81,9 +70,11 @@ public sealed class CongestionTaxCalculator : ICongestionTaxCalculator
         var month = date.Month;
         var day = date.Day;
 
-        if (date.DayOfWeek is DayOfWeek.Saturday or DayOfWeek.Sunday) return true;
+        if (date.DayOfWeek is DayOfWeek.Saturday or DayOfWeek.Sunday)
+            return true;
 
-        if (year != 2013) return false;
+        if (year != 2013)
+            return false;
         return month == 1 && day == 1 ||
                month == 3 && day is 28 or 29 ||
                month == 4 && day is 1 or 30 ||
@@ -103,5 +94,17 @@ public sealed class CongestionTaxCalculator : ICongestionTaxCalculator
                vehicleType.Equals(TollFreeVehicles.Diplomat.ToString()) ||
                vehicleType.Equals(TollFreeVehicles.Foreign.ToString()) ||
                vehicleType.Equals(TollFreeVehicles.Military.ToString());
+    }
+
+    private int GetTollFee(DateTime date, IVehicle vehicle, TaxRules cityTaxRules)
+    {
+        if (IsTollFreeDate(date) || IsTollFreeVehicle(vehicle))
+            return 0;
+
+        var timeOnlyPass = TimeOnly.FromDateTime(date);
+
+        return cityTaxRules.HourRules
+            .Where(x => timeOnlyPass >= x.From && timeOnlyPass <= x.To)
+            .Select(x => x.Tax).FirstOrDefault();
     }
 }

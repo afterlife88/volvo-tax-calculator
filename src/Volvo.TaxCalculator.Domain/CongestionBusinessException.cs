@@ -3,7 +3,7 @@ using Volvo.TaxCalculator.Utils;
 
 namespace Volvo.TaxCalculator.Domain;
 
-public class CongestionBusinessException : HttpStatusException
+public sealed class CongestionBusinessException : HttpStatusException
 {
     public override HttpStatusCode Status => HttpStatusCode.UnprocessableEntity;
 

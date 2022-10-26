@@ -52,7 +52,7 @@ public sealed class ErrorHandlingMiddleware
         context.Response.StatusCode = code;
         return context.Response.WriteAsJsonAsync(response);
     }
-    
+
     private Task HandleExceptionAsync(HttpContext context, Exception e, int code, params string[] errors)
     {
         _logger.LogError(e, "Error occured");

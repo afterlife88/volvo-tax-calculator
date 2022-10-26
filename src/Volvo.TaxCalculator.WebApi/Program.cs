@@ -8,12 +8,15 @@ using Volvo.TaxCalculator.WebApi;
 using Volvo.TaxCalculator.WebApi.ErrorHandling;
 
 var builder = WebApplication.CreateBuilder(args);
+
 RegisterServices(builder.Services);
 
 var app = builder.Build();
 
 app.UseMiddleware<ErrorHandlingMiddleware>();
+
 app.UseSwagger();
+
 app.UseSwaggerUI(x =>
 {
     x.SwaggerEndpoint("/swagger/v1/swagger.json", "Volvo Tax Calculator");
@@ -21,14 +24,16 @@ app.UseSwaggerUI(x =>
 });
 
 app.RegisterEndpoints();
+
 app.UseHttpsRedirection();
+
 app.Run();
 
 void RegisterServices(IServiceCollection services)
 {
     services.AddMvcCore()
         .AddJsonOptions(options => options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter()));
-    
+
     services.Configure<JsonOptions>(options =>
     {
         options.SerializerOptions.Converters.Add(new JsonStringEnumConverter());

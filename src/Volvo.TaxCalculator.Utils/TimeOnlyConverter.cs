@@ -4,7 +4,7 @@ using System.Text.Json.Serialization;
 
 namespace Volvo.TaxCalculator.Utils;
 
-public class TimeOnlyConverter : JsonConverter<TimeOnly>
+public sealed class TimeOnlyConverter : JsonConverter<TimeOnly>
 {
     private const string TimeFormat = "HH:mm";
 

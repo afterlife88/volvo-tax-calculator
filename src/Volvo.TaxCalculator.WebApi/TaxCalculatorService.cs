@@ -3,12 +3,7 @@ using Volvo.TaxCalculator.Domain.Vehicles;
 
 namespace Volvo.TaxCalculator.WebApi;
 
-public interface ITaxCalculatorService
-{
-    Task<int> ExecuteAsync(CalculateTaxRequest model);
-}
-
-public class TaxCalculatorService : ITaxCalculatorService
+public sealed class TaxCalculatorService : ITaxCalculatorService
 {
     private readonly ICongestionTaxCalculator _congestionTaxCalculator;
 
