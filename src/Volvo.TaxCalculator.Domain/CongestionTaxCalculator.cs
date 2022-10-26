@@ -32,6 +32,10 @@ public sealed class CongestionTaxCalculator : ICongestionTaxCalculator
         foreach (var date in sortedDates)
         {
             var currentPassFee = GetTollFee(date, vehicle, cityTaxRules);
+
+            // Fix
+            // long diffInMillies = date.Millisecond - intervalStart.Millisecond;
+            // long minutes = diffInMillies / 1000 / 60;
             var minutesFromInitialPass = date.Subtract(startDate).TotalMinutes;
 
             if (minutesFromInitialPass <= 60)
@@ -44,6 +48,7 @@ public sealed class CongestionTaxCalculator : ICongestionTaxCalculator
             }
             else
             {
+                // Fix by moving start date pointer
                 startDate = date;
                 totalFee += currentPassFee;
             }
