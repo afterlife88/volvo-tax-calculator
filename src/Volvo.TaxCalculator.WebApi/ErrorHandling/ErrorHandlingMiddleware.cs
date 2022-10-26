@@ -30,7 +30,7 @@ public sealed class ErrorHandlingMiddleware
         }
         catch (BadHttpRequestException e)
         {
-            await HandleExceptionAsync(context, e, 400, "Invalid vehicle passed");
+            await HandleExceptionAsync(context, e, 400, "Invalid request passed");
         }
         catch (ArgumentOutOfRangeException e)
         {
